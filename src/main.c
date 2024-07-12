@@ -12,7 +12,7 @@ player_t player;
 void setupGame(void)
 {
 	player.x = SCREEN_WIDTH / 2;
-	player.y = SCREE_HEIGHT / 2;
+	player.y = SCREEN_HEIGHT / 2;
 	player.width = 1;
 	player.height = 30;
 	player.walkDirection = 0;
@@ -32,7 +32,7 @@ void setupGame(void)
 void updateGame(void)
 {
 	float DeltaTime;
-	int timeToWait = FRAME_TIME_LENGTH - (SDL_GetTicks() - ticcksLastFrame);
+	int timeToWait = FRAME_TIME_LENGTH - (SDL_GetTicks() - ticksLastFrame);
 	if (timeToWait > 0 && timeToWait <= FRAME_TIME_LENGTH)
 	{
 		SDL_Delay(timeToWait);
@@ -51,20 +51,20 @@ void updateGame(void)
  */
 void renderGame(void)
 {
-	clearColorBuffer(0xFF0000000);
+	clearColorBuffer(0xFF000000);
 
 	renderWall();
 	renderMap();
 	renderRays();
 
-	renderColorBuffer;
+	renderColorBuffer();
 }
 
 /**
  * destroyGame - free wall textures and destroy windocw
  *
  */
-void destroyGame(void):
+void destroyGame(void)
 {
 	freeWallTextures();
 	destroyWindow();
@@ -81,7 +81,7 @@ int main(void)
 
 	while (gameIsRunning)
 	{
-		handle_input();
+		handleInput();
 		updateGame();
 		renderGame();
 	}
